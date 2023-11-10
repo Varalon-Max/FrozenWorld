@@ -30,7 +30,6 @@ namespace _Project.Scripts
         private void Awake()
         {
             _playerInputActions = new PlayerInputActions();
-            _playerInputActions.Player.Enable();
         }
 
         private void Update()

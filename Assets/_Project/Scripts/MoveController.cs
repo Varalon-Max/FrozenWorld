@@ -10,6 +10,9 @@ namespace _Project.Scripts
         [SerializeField] private float forceApplied;
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private float movingSpeed;
+
+        private float _coyoteTime = 0.2f;
+        private float _coyoteTimeCounter;
         
         private BoxCollider2D _boxCollider2D;
         private Rigidbody2D _playerRigidbody;
@@ -23,7 +26,7 @@ namespace _Project.Scripts
             _playerRigidbody = GetComponent<Rigidbody2D>();
             _boxCollider2D = GetComponent<BoxCollider2D>();
         }
-        
+
         private void OnEnable()
         {
             gameInput.OnJump += Jump;
@@ -36,14 +39,23 @@ namespace _Project.Scripts
 
         public void Jump()
         {
-            if (IsGrounded())
+            if (IsGrounded() || _coyoteTimeCounter>0)
             {
-                _playerRigidbody.AddForce(Vector2.up*forceApplied, ForceMode2D.Impulse);   
+                _playerRigidbody.AddForce(Vector2.up*forceApplied, ForceMode2D.Impulse);
+                _coyoteTimeCounter = 0;
             }
         }
 
         private void Update()
         {
+            if (IsGrounded())
+            {
+                _coyoteTimeCounter = _coyoteTime;
+            }
+            else
+            {
+                _coyoteTimeCounter -= Time.deltaTime;
+            }
             Movement(gameInput.MoveDirection);
         }
 
