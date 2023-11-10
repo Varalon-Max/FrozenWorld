@@ -19,11 +19,6 @@ namespace _Project.Scripts
         private void OnValidate()
         {
             this.ValidateRefs();
-            if (freezingStages.Count != 0)
-            {
-                _defaultVisualsPrefab = freezingStages.First(v => v.maxFreezingBound == 1).frozenVisualsPrefab;
-                freezingStages = freezingStages.OrderBy(v => v.maxFreezingBound).ToList();
-            }
         }
 
         private void OnEnable()
@@ -34,6 +29,12 @@ namespace _Project.Scripts
 
         private void Awake()
         {
+            if (freezingStages.Count != 0)
+            {
+                _defaultVisualsPrefab = freezingStages.First(v => v.maxFreezingBound == 1).frozenVisualsPrefab;
+                freezingStages = freezingStages.OrderBy(v => v.maxFreezingBound).ToList();
+            }
+            
             Destroy(visualsPlaceholder);
             ChangeVisuals(_defaultVisualsPrefab);
         }
