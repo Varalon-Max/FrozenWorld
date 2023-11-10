@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using KBCore.Refs;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Project.Scripts
 {
@@ -10,7 +11,8 @@ namespace _Project.Scripts
     {
         [SerializeField, Self] private MeltingObject meltingObject;
         [SerializeField] private List<FreezingVisuals> freezingStages;
-
+        [SerializeField] private GameObject visualsPlaceholder;
+        
         private GameObject _defaultVisualsPrefab;
         private GameObject _currentVisuals;
 
@@ -32,6 +34,7 @@ namespace _Project.Scripts
 
         private void Awake()
         {
+            Destroy(visualsPlaceholder);
             ChangeVisuals(_defaultVisualsPrefab);
         }
 
