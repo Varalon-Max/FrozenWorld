@@ -1,4 +1,5 @@
-﻿using KBCore.Refs;
+﻿using _Project.Scripts.Enums;
+using KBCore.Refs;
 using UnityEngine;
 
 namespace _Project.Scripts
@@ -10,9 +11,12 @@ namespace _Project.Scripts
         [SerializeField] private float forceApplied;
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private float movingSpeed;
+        [SerializeField] private float acceleratedSpeed;
 
         private float _coyoteTime = 0.2f;
         private float _coyoteTimeCounter;
+        private float _currentSpeed;
+        private Vector2 _currentMoveDirection;
         
         private BoxCollider2D _boxCollider2D;
         private Rigidbody2D _playerRigidbody;
@@ -30,11 +34,15 @@ namespace _Project.Scripts
         private void OnEnable()
         {
             gameInput.OnJump += Jump;
+            gameInput.OnAccelerate += Accelerate;
+            Player.player.OnAccelerationEnd += UnAccelerate;
         }
         
         private void OnDisable()
         {
             gameInput.OnJump -= Jump;
+            gameInput.OnAccelerate -= Accelerate;
+            Player.player.OnAccelerationEnd -= UnAccelerate;
         }
 
         public void Jump()
@@ -61,6 +69,7 @@ namespace _Project.Scripts
 
         public void Movement(Vector2 moveDirection)
         {
+            _currentMoveDirection = moveDirection;
             float extraWight = 0.1f;
             
             if (!CheckHitsWall())
@@ -78,6 +87,20 @@ namespace _Project.Scripts
                 return ray.collider != null;
             }
         }
+
+        private void Accelerate()
+        {
+            _playerRigidbody.gravityScale = 0f;
+            _playerRigidbody.AddForce(_currentMoveDirection*acceleratedSpeed, ForceMode2D.Impulse);
+            
+        }
+
+        private void UnAccelerate()
+        {
+            _playerRigidbody.gravityScale = 1f;
+            _playerRigidbody.velocity = Vector2.zero;
+        }
+        
 
         private bool IsGrounded()
         {

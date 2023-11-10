@@ -7,6 +7,7 @@ namespace _Project.Scripts
     public class GameInput: MonoBehaviour
     {
         public event Action OnJump;
+        public event Action OnAccelerate;
         public Vector2 MoveDirection { get; private set; }
         
         private PlayerInputActions _playerInputActions;
@@ -15,6 +16,7 @@ namespace _Project.Scripts
         {
             _playerInputActions.Enable();
             _playerInputActions.Player.Jump.performed += Jump;
+            _playerInputActions.Player.FireAccelerate.performed += Accelerate;
         }
 
         private void Jump(InputAction.CallbackContext obj)
@@ -22,10 +24,16 @@ namespace _Project.Scripts
             OnJump?.Invoke();
         }
 
+        private void Accelerate(InputAction.CallbackContext obj)
+        {
+            OnAccelerate?.Invoke();
+        }
+
         private void OnDisable()
         {
             _playerInputActions.Disable();
             _playerInputActions.Player.Jump.performed -= Jump;
+            _playerInputActions.Player.FireAccelerate.performed -= Accelerate;
         }
         private void Awake()
         {
