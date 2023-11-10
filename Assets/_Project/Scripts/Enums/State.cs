@@ -3,6 +3,7 @@
     public enum State
     {
         Calm,
-        Accelerated
+        Accelerated,
+        AccelerateOnCooldown
     }
 }

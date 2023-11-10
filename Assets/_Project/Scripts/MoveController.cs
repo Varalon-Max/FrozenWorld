@@ -17,6 +17,7 @@ namespace _Project.Scripts
         private float _coyoteTimeCounter;
         private float _currentSpeed;
         private Vector2 _currentMoveDirection;
+        private Player _player;
         
         private BoxCollider2D _boxCollider2D;
         private Rigidbody2D _playerRigidbody;
@@ -29,20 +30,22 @@ namespace _Project.Scripts
         {
             _playerRigidbody = GetComponent<Rigidbody2D>();
             _boxCollider2D = GetComponent<BoxCollider2D>();
+            _player = GetComponent<Player>();
         }
 
         private void OnEnable()
         {
             gameInput.OnJump += Jump;
             gameInput.OnAccelerate += Accelerate;
-            Player.player.OnAccelerationEnd += UnAccelerate;
+            _player.OnAccelerationEnd += UnAccelerate;
         }
         
         private void OnDisable()
         {
             gameInput.OnJump -= Jump;
             gameInput.OnAccelerate -= Accelerate;
-            Player.player.OnAccelerationEnd -= UnAccelerate;
+            _player.OnAccelerationEnd -= UnAccelerate;
+
         }
 
         public void Jump()
@@ -90,9 +93,11 @@ namespace _Project.Scripts
 
         private void Accelerate()
         {
-            _playerRigidbody.gravityScale = 0f;
-            _playerRigidbody.AddForce(_currentMoveDirection*acceleratedSpeed, ForceMode2D.Impulse);
-            
+            if (_player.IsReadyToAccelerate())
+            {
+                _playerRigidbody.gravityScale = 0f;
+                _playerRigidbody.AddForce(_currentMoveDirection*acceleratedSpeed, ForceMode2D.Impulse);   
+            }
         }
 
         private void UnAccelerate()
