@@ -12,6 +12,7 @@ namespace _Project.Scripts
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private float movingSpeed;
         [SerializeField] private float acceleratedSpeed;
+        [SerializeField] private float fallMultiplyer;
 
         private float _coyoteTime = 0.2f;
         private float _coyoteTimeCounter;
@@ -69,6 +70,14 @@ namespace _Project.Scripts
             }
             Movement(gameInput.MoveDirection);
         }
+        
+        private void FixedUpdate()
+        {
+            if (_playerRigidbody.velocity.y < 0)
+            {
+                _playerRigidbody.velocity += Vector2.up * Physics.gravity.y * fallMultiplyer * Time.deltaTime;
+            }
+        }
 
         public void Movement(Vector2 moveDirection)
         {
@@ -96,6 +105,7 @@ namespace _Project.Scripts
             if (_player.IsReadyToAccelerate())
             {
                 _playerRigidbody.gravityScale = 0f;
+                _playerRigidbody.velocity = new Vector2(_playerRigidbody.velocity.x, 0f);
                 _playerRigidbody.AddForce(_currentMoveDirection*acceleratedSpeed, ForceMode2D.Impulse);   
             }
         }
