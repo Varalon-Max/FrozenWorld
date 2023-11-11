@@ -14,7 +14,8 @@ namespace _Project.Scripts
 
         private void OpenDoor()
         {
-            throw new NotImplementedException();
+            // TODO: add door opening animation
+            Destroy(gameObject);
         }
         
         private void OnDisable()
