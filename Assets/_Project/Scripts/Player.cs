@@ -11,6 +11,7 @@ namespace _Project.Scripts
     public class Player: MonoBehaviour
     {
         public event Action OnAccelerationEnd;
+        public event Action OnAccelerationStart;
         
         [SerializeField, Self] private GameInput gameInput;
         
@@ -79,8 +80,9 @@ namespace _Project.Scripts
 
         private void SetAccelerator()
         {
-            if (_playerState.GetState()==State.Calm)
+            if (IsReadyToAccelerate())
             {
+                OnAccelerationStart?.Invoke();
                 _playerState.SetState(State.Accelerated);
             }
         }

@@ -42,14 +42,14 @@ namespace _Project.Scripts
         private void OnEnable()
         {
             gameInput.OnJump += Jump;
-            gameInput.OnAccelerate += Accelerate;
+            _player.OnAccelerationStart += Accelerate;
             _player.OnAccelerationEnd += UnAccelerate;
         }
         
         private void OnDisable()
         {
             gameInput.OnJump -= Jump;
-            gameInput.OnAccelerate -= Accelerate;
+            _player.OnAccelerationStart -= Accelerate;
             _player.OnAccelerationEnd -= UnAccelerate;
 
         }
