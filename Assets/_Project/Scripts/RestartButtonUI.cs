@@ -1,4 +1,3 @@
-using Eflatun.SceneReference;
 using KBCore.Refs;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +7,6 @@ namespace _Project.Scripts
     public class RestartButtonUI : MonoBehaviour
     {
         [SerializeField, Self] private Button button;
-        [SerializeField] private SceneReference selfScene;
     
         private void OnValidate()
         {
