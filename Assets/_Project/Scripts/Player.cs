@@ -35,7 +35,6 @@ namespace _Project.Scripts
 
         private void Update()
         {
-            Debug.Log(_playerState.GetState());
             if (_playerState.GetState()==State.Accelerated)
             {
                 _accelerateTimeCounter -= Time.deltaTime;
