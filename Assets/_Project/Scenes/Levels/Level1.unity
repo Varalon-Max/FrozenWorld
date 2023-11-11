@@ -808,10 +808,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3175223094327396670, guid: aeb936a48bfc2a949830f6899db5a177, type: 3}
-      propertyPath: m_GravityScale
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5697300704341883133, guid: aeb936a48bfc2a949830f6899db5a177, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.24
@@ -1210,17 +1206,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 658963184}
     m_Modifications:
-    - target: {fileID: 2008572054912232920, guid: 5136c61aa7ad1cd4d99e137dc5af8965, type: 3}
-      propertyPath: m_Size.x
-      value: 56
-      objectReference: {fileID: 0}
     - target: {fileID: 6947988489242276626, guid: 5136c61aa7ad1cd4d99e137dc5af8965, type: 3}
       propertyPath: m_Name
       value: KillPlatform
-      objectReference: {fileID: 0}
-    - target: {fileID: 7537371974263410694, guid: 5136c61aa7ad1cd4d99e137dc5af8965, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 56.61
       objectReference: {fileID: 0}
     - target: {fileID: 7697641034530770131, guid: 5136c61aa7ad1cd4d99e137dc5af8965, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1260,22 +1248,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7697641034530770131, guid: 5136c61aa7ad1cd4d99e137dc5af8965, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8259533074945476316, guid: 5136c61aa7ad1cd4d99e137dc5af8965, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8259533074945476316, guid: 5136c61aa7ad1cd4d99e137dc5af8965, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8259533074945476316, guid: 5136c61aa7ad1cd4d99e137dc5af8965, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8259533074945476316, guid: 5136c61aa7ad1cd4d99e137dc5af8965, type: 3}
-      propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
