@@ -14,5 +14,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/MeltingTest.unity
     guid: 5b197bf2805a82840887ae56da69e13c
+  - enabled: 1
+    path: Assets/_Project/Scenes/MainMenu.unity
+    guid: 2080becb7a179a642bfe038c9eaf8703
+  - enabled: 1
+    path: Assets/_Project/Scenes/Levels/Level1.unity
+    guid: 436eb165e99670f40a7d7df8d7c2b18c
+  - enabled: 1
+    path: Assets/_Project/Scenes/UboutUs.unity
+    guid: a6cc10b226ba23f41a447656317289ef
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: fdc7396174f109b4c9579bda6898c320, type: 2}
