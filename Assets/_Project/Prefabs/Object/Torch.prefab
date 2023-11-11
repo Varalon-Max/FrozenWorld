@@ -51,8 +51,8 @@ MonoBehaviour:
   freezingStages:
   - frozenVisualsPrefab: {fileID: 7039770581833921090, guid: 08a0b3310f589524b9df3332e06a0acd, type: 3}
     maxFreezingBound: 1
-  - frozenVisualsPrefab: {fileID: 7039770581833921090, guid: dafc41d02ab58f24395da13f876a3f4e, type: 3}
-    maxFreezingBound: 0.5
+  - frozenVisualsPrefab: {fileID: 7039770581833921090, guid: 251561dfbe2484247a2b8ab99259419a, type: 3}
+    maxFreezingBound: 0.1
   visualPlaceholder: {fileID: 58976000382183852}
 --- !u!114 &4930005730213491633
 MonoBehaviour:

@@ -117,7 +117,7 @@ namespace _Project.Scripts
 
         private void UnAccelerate()
         {
-            _playerRigidbody.gravityScale = 1f;
+            _playerRigidbody.gravityScale = defaultGravityScale;
             _playerRigidbody.velocity = Vector2.zero;
         }
         

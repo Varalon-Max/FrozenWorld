@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameInput: {fileID: 3610268379176098098}
-  forceApplied: 9
+  forceApplied: 9.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
