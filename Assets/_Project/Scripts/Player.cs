@@ -6,5 +6,8 @@ using UnityEngine;
 
 namespace _Project.Scripts
 {
+    public class Player : MonoBehaviour
+    {
+    }
 
 }

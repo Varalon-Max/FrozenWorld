@@ -24,6 +24,12 @@ namespace _Project.Scripts
             this.ValidateRefs();
         }
 
+        private void Start()
+        {
+            Reset();
+            StartAnimation();
+        }
+
         private void Awake()
         {
             _finalText = text.text;

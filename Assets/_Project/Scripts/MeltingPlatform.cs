@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using KBCore.Refs;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Project.Scripts
 {
@@ -12,10 +10,11 @@ namespace _Project.Scripts
         [SerializeField, Self] private MeltingObject meltingObject;
         [SerializeField] private List<FreezingVisuals> freezingStages;
         [SerializeField] private GameObject visualsPlaceholder;
-        
+
         private GameObject _defaultVisualsPrefab;
         private GameObject _currentVisuals;
 
+        private IBehaviour _meltingBehaviour;
         private void OnValidate()
         {
             this.ValidateRefs();
@@ -24,41 +23,14 @@ namespace _Project.Scripts
         private void OnEnable()
         {
             meltingObject.OnTotallyMelted += OnTotallyMelted;
-            meltingObject.OnFreezingChanged += OnFreezingChanged;
+            _meltingBehaviour.OnEnable();
         }
 
         private void Awake()
         {
-            if (freezingStages.Count != 0)
-            {
-                _defaultVisualsPrefab = freezingStages.First(v => v.maxFreezingBound == 1).frozenVisualsPrefab;
-                freezingStages = freezingStages.OrderBy(v => v.maxFreezingBound).ToList();
-            }
-            
-            Destroy(visualsPlaceholder);
-            ChangeVisuals(_defaultVisualsPrefab);
-        }
-
-        private void OnFreezingChanged(float currentFreezing)
-        {
-            foreach (var freezingStage in freezingStages)
-            {
-                if (currentFreezing <= freezingStage.maxFreezingBound)
-                {
-                    ChangeVisuals(freezingStage.frozenVisualsPrefab);
-                    return;
-                }
-            }
-        }
-
-        private void ChangeVisuals(GameObject newVisualsPrefab)
-        {
-            if (_currentVisuals != null)
-            {
-                Destroy(_currentVisuals);
-            }
-
-            _currentVisuals = Instantiate(newVisualsPrefab, transform);
+            visualsPlaceholder.SetActive(false);
+            _meltingBehaviour = new ChangingVisualOnMeltingBehaviour(freezingStages, meltingObject, transform);
+            _meltingBehaviour.Awake();
         }
 
         private void OnTotallyMelted()
@@ -69,7 +41,7 @@ namespace _Project.Scripts
         private void OnDisable()
         {
             meltingObject.OnTotallyMelted -= OnTotallyMelted;
-            meltingObject.OnFreezingChanged -= OnFreezingChanged;
+            _meltingBehaviour.OnDisable();
         }
     }
 
