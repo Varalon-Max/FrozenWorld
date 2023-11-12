@@ -12,6 +12,8 @@ namespace _Project.Scripts
         public static SoundManager Instance { get; private set; }
         [SerializeField] private Sound[] musicSound;
         [SerializeField] private Sound[] sfxSound;
+        [SerializeField] private AudioSource audioSource;
+        
 
         private float _volume = 1f;
 
@@ -64,7 +66,7 @@ namespace _Project.Scripts
         public void Play2DSound(SoundPurpose purpose)
         {
             AudioClip clip = _sfxDictionary[purpose];
-            AudioSource.PlayClipAtPoint(clip, Vector3.zero, _volume);
+            audioSource.PlayOneShot(clip,  _volume);
         }
         
         private void OnAnyButtonClicked()
