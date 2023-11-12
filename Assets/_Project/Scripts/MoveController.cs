@@ -1,11 +1,19 @@
-﻿using _Project.Scripts.Enums;
+﻿using System;
+using _Project.Scripts.Enums;
 using KBCore.Refs;
 using UnityEngine;
 
 namespace _Project.Scripts
 {
-    public class MoveController : MonoBehaviour
+    public class MoveController : MonoBehaviour, IPlayerController
     {
+        
+        public Vector2 Input { get; private set; }
+        public Vector2 Speed { get; private set; }
+        public event Action<bool> GroundedChanged;
+        public event Action Jumped;
+        
+        
         [SerializeField, Self] private GameInput gameInput;
         
         [SerializeField] private float forceApplied;
@@ -56,6 +64,7 @@ namespace _Project.Scripts
 
         public void Jump()
         {
+            Jumped?.Invoke();
             if (IsGrounded() || _coyoteTimeCounter>0)
             {
                 _playerRigidbody.AddForce(Vector2.up*forceApplied, ForceMode2D.Impulse);
@@ -65,6 +74,8 @@ namespace _Project.Scripts
 
         private void Update()
         {
+            Input = gameInput.MoveDirection;
+            Speed = _playerRigidbody.velocity;
             if (IsGrounded())
             {
                 _coyoteTimeCounter = _coyoteTime;
@@ -131,7 +142,7 @@ namespace _Project.Scripts
                 bounds.size,
                 0f, 
                 Vector2.down,extraHeight, groundLayer);
-           
+            GroundedChanged?.Invoke(ray.collider != null);
             return ray.collider != null;
         }
     }
