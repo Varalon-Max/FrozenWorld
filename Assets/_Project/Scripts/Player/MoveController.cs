@@ -6,8 +6,9 @@ namespace _Project.Scripts.Player
 {
     public class MoveController : MonoBehaviour, IPlayerController
     {
-        public Vector2 Input { get; private set; }
+        public static Vector2 Input { get; private set; }
         public Vector2 Speed { get; private set; }
+        public static bool OnGround { get; private set; }
         public event Action<bool> GroundedChanged;
         public event Action Jumped;
         
@@ -63,6 +64,7 @@ namespace _Project.Scripts.Player
 
         private void Update()
         {
+            OnGround = IsGrounded();
             Input = gameInput.MoveDirection;
             Speed = playerRigidbody.velocity;
             if (IsGrounded())
