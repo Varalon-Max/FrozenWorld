@@ -30,7 +30,7 @@ namespace _Project.Scripts.Animation
         }
 
         private void Update() {
-            if (_player.Input.x != 0) _renderer.flipX = _player.Input.x < 0;
+            if (MoveController.Input.x != 0) _renderer.flipX = MoveController.Input.x < 0;
 
             var state = GetState();
 
@@ -48,7 +48,7 @@ namespace _Project.Scripts.Animation
             // Priorities
             if (_jumpTriggered) return Jump;
 
-            if (_grounded) return _player.Input.x == 0 ? Idle : Walk;
+            if (_grounded) return MoveController.Input.x == 0 ? Idle : Walk;
             return _player.Speed.y > 0 ? Jump : Fall;
 
             int LockState(int s, float t) {
