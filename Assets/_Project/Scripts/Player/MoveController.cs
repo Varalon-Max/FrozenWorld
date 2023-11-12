@@ -26,6 +26,9 @@ namespace _Project.Scripts.Player
         private float _coyoteTimeCounter;
         private float _currentSpeed;
         private Vector2 _currentMoveDirection;
+
+        public static event Action OnAnyJumpStarted;
+        // public static event Action OnAnyJump;
         
         private void OnValidate()
         {
@@ -49,9 +52,10 @@ namespace _Project.Scripts.Player
 
         public void Jump()
         {
-            Jumped?.Invoke();
             if (IsGrounded() || _coyoteTimeCounter>0)
             {
+                Jumped?.Invoke();
+                OnAnyJumpStarted?.Invoke();
                 playerRigidbody.AddForce(Vector2.up*forceApplied, ForceMode2D.Impulse);
                 _coyoteTimeCounter = 0;
             }
@@ -82,7 +86,7 @@ namespace _Project.Scripts.Player
 
         public void Movement(Vector2 moveDirection)
         {
-            _currentMoveDirection = moveDirection;
+           _currentMoveDirection = moveDirection;
             float extraWight = 0.1f;
             
             if (!CheckHitsWall())

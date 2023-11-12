@@ -13,6 +13,8 @@ namespace _Project.Scripts.Core
         [SerializeField] private GameObject visualPlaceholder;
 
         private IMeltingBehaviour _meltingMeltingBehaviour;
+        private readonly string _torchActionName = "TorchLight";
+
         
         public event Action OnTorchLit;
         public static event Action OnAnyTorchLit;

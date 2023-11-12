@@ -1203,7 +1203,8 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 1565971591}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4358202373323893245, guid: 3fc44306dfa46ff46ad3497a2e376d0e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -1,4 +1,5 @@
-﻿using KBCore.Refs;
+﻿using System;
+using KBCore.Refs;
 using UnityEngine;
 
 namespace _Project.Scripts.Core
@@ -8,6 +9,8 @@ namespace _Project.Scripts.Core
         [SerializeField, Self] private Collider2D plateCollider;
         [SerializeField] private GameObject pressedVisual;
         [SerializeField] private GameObject unpressedVisual;
+        
+public static event Action OnPlatePressed;
         
         private void OnValidate()
         {
@@ -22,6 +25,7 @@ namespace _Project.Scripts.Core
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            OnPlatePressed?.Invoke();
             if (other.gameObject.GetComponent<Player.Player>())
             {
                 SetVisualsPressed(true);
