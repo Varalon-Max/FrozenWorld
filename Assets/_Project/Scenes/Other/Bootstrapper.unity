@@ -335,7 +335,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.6
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkAudioClip: {fileID: 8300000, guid: 319e4be3bb061684392dbca591029dbc, type: 3}
   walkSource: {fileID: 232756794}
-  pauseBetweenSteps: 1
+  pauseBetweenSteps: 0.3
 --- !u!82 &232756794
 AudioSource:
   m_ObjectHideFlags: 0
