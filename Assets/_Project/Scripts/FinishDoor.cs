@@ -6,6 +6,7 @@ namespace _Project.Scripts
     public class FinishDoor : MonoBehaviour
     {
         private Level _level;
+        private readonly string _doorActionName = "OpenDoor";
 
         private void Awake()
         {
@@ -19,6 +20,7 @@ namespace _Project.Scripts
 
         private void OnAllTorchesActivated()
         {
+            SoundManager.Instance.Play2DSound(_doorActionName);
             Destroy(gameObject);
         }
 

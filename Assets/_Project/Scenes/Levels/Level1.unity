@@ -205,10 +205,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneView
       objectReference: {fileID: 0}
-    - target: {fileID: 4753443711350016290, guid: 3fc44306dfa46ff46ad3497a2e376d0e, type: 3}
-      propertyPath: parallaxLayers.Array.data[0].transform
-      value: 
-      objectReference: {fileID: 131105160}
     - target: {fileID: 6227634000212194992, guid: 3fc44306dfa46ff46ad3497a2e376d0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -262,11 +258,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fc44306dfa46ff46ad3497a2e376d0e, type: 3}
---- !u!4 &131105160 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7301687572142698439, guid: 3fc44306dfa46ff46ad3497a2e376d0e, type: 3}
-  m_PrefabInstance: {fileID: 131105159}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &172421525
 PrefabInstance:
   m_ObjectHideFlags: 0

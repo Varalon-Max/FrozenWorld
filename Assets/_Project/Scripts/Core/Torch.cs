@@ -13,6 +13,8 @@ namespace _Project.Scripts.Core
         [SerializeField] private GameObject visualPlaceholder;
 
         private IMeltingBehaviour _meltingMeltingBehaviour;
+        private readonly string _torchActionName = "TorchLight";
+
         
         public event Action OnTorchLit;
         public static event Action OnAnyTorchLit;
@@ -38,6 +40,7 @@ namespace _Project.Scripts.Core
 
         private void LightTorch()
         {
+            SoundManager.Instance.Play2DSound(_torchActionName);
             OnTorchLit?.Invoke();
             OnAnyTorchLit?.Invoke();
         }

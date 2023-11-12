@@ -200,6 +200,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500bd2c6f77b4a85b1a337259472ac5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicSound: []
+  sfxSound:
+  - Name: Jump
+    AudioClip: {fileID: 8300000, guid: e7a858917151f3b4a9b917e649689aee, type: 3}
+  - Name: Run
+    AudioClip: {fileID: 8300000, guid: e71ebd1085683724783bfd93f0d1107b, type: 3}
+  - Name: TorchLight
+    AudioClip: {fileID: 8300000, guid: 199b37810e2f91342bae3027c259ce09, type: 3}
+  - Name: PlatePressed
+    AudioClip: {fileID: 8300000, guid: cf68b6951656fc64d8284d19e1b1f8ab, type: 3}
+  - Name: IceProgress
+    AudioClip: {fileID: 8300000, guid: 78233da75fd953444adb14a6efbab515, type: 3}
+  - Name: IceDeath
+    AudioClip: {fileID: 8300000, guid: bf1a845cc309a8445b026896b5e3e7d1, type: 3}
+  - Name: OpenDoor
+    AudioClip: {fileID: 8300000, guid: 9f57dc3e2de8d7e4791d1e8f10b9a285, type: 3}
 --- !u!1 &1614594526
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,9 @@ namespace _Project.Scripts.Core
         [SerializeField] private GameObject pressedVisual;
         [SerializeField] private GameObject unpressedVisual;
         
+        private readonly string _plateActionName = "PlatePressed";
+
+        
         private void OnValidate()
         {
             this.ValidateRefs();
@@ -22,6 +25,7 @@ namespace _Project.Scripts.Core
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            SoundManager.Instance.Play2DSound(_plateActionName);
             if (other.gameObject.GetComponent<Player.Player>())
             {
                 SetVisualsPressed(true);

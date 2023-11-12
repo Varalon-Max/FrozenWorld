@@ -17,6 +17,8 @@ namespace _Project.Scripts.Core
 
         private IMeltingBehaviour _meltingMeltingBehaviour;
         
+        private readonly string _iceDeathSound = "IceDeath";
+        
         public static event Action OnAnyPlatformTotallyMelted;
         public static event Action OnAnyPlatformStateChanged;
         private void OnValidate()
@@ -40,6 +42,7 @@ namespace _Project.Scripts.Core
 
         private void OnTotallyMelted()
         {
+            SoundManager.Instance.Play2DSound(_iceDeathSound);
             OnAnyPlatformTotallyMelted?.Invoke();
             Destroy(gameObject);
         }

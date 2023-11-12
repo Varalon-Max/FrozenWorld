@@ -1,10 +1,15 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Security.Cryptography;
+using UnityEngine;
 
 namespace _Project.Scripts
 {
     public class SoundManager : MonoBehaviour
     {
         public static SoundManager Instance { get; private set; }
+        [SerializeField] private Sound[] musicSound;
+        [SerializeField] private Sound[] sfxSound;
+
         private float _volume = 1f;
         private void Awake()
         {
@@ -12,17 +17,17 @@ namespace _Project.Scripts
             {
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
-            }   
-            
-            if (Instance != null && Instance != this)
+            }
+            else
             {
                 Destroy(gameObject);
             }
         }
         
-        public void Play2DSound(AudioClip clip)
+        public void Play2DSound(string name)
         {
-            AudioSource.PlayClipAtPoint(clip, Vector3.zero, _volume);
+            Sound sound = Array.Find(sfxSound, x => x.Name == name);
+            AudioSource.PlayClipAtPoint(sound.AudioClip, Vector3.zero, _volume);
         }
     }
 }

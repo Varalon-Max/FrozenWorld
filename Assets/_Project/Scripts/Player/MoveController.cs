@@ -26,6 +26,10 @@ namespace _Project.Scripts.Player
         private float _coyoteTimeCounter;
         private float _currentSpeed;
         private Vector2 _currentMoveDirection;
+
+        private readonly string _jumpName = "Jump";
+        private readonly string _runName = "Run";
+
         
         private void OnValidate()
         {
@@ -49,6 +53,7 @@ namespace _Project.Scripts.Player
 
         public void Jump()
         {
+            SoundManager.Instance.Play2DSound(_jumpName);
             Jumped?.Invoke();
             if (IsGrounded() || _coyoteTimeCounter>0)
             {
@@ -82,6 +87,10 @@ namespace _Project.Scripts.Player
 
         public void Movement(Vector2 moveDirection)
         {
+            if (playerRigidbody.velocity.x>0)
+            {
+                SoundManager.Instance.Play2DSound(_runName);
+            }
             _currentMoveDirection = moveDirection;
             float extraWight = 0.1f;
             

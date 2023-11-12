@@ -15,7 +15,7 @@ namespace _Project.Scripts.Behaviours
 
         private GameObject _defaultVisualsPrefab;
         private GameObject _currentVisuals;
-        
+        private readonly string _iceProgressSound = "IceProgress";
 
         public ChangingVisualOnMeltingMeltingBehaviour(
             List<FreezingVisuals> freezingStages,
@@ -66,6 +66,7 @@ namespace _Project.Scripts.Behaviours
 
         private void ChangeVisuals(GameObject newVisualsPrefab)
         {
+            //SoundManager.Instance.Play2DSound(_iceProgressSound);
             if (_currentVisuals != null)
             {
                 Object.Destroy(_currentVisuals);
