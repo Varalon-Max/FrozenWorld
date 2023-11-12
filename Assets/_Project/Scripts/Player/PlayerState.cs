@@ -1,6 +1,6 @@
 ﻿using _Project.Scripts.Enums;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.Player
 {
     public class PlayerState
     {

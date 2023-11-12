@@ -2,7 +2,7 @@ using KBCore.Refs;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.UI
 {
     public class RestartButtonUI : MonoBehaviour
     {

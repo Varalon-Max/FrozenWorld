@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Project.Scripts.Behaviours;
 using KBCore.Refs;
 using UnityEngine;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.Core
 {
     public class MeltingPlatform : MonoBehaviour
     {

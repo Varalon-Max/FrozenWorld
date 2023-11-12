@@ -1,8 +1,7 @@
-﻿using _Project.Scripts.Enums;
-using KBCore.Refs;
+﻿using KBCore.Refs;
 using UnityEngine;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.Player
 {
     public class MoveController : MonoBehaviour
     {

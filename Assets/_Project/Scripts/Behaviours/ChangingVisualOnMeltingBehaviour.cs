@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using _Project.Scripts.Core;
 using UnityEngine;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.Behaviours
 {
     public class ChangingVisualOnMeltingBehaviour : IBehaviour
     {

@@ -3,7 +3,7 @@ using Eflatun.SceneReference;
 using MEC;
 using UnityEngine.SceneManagement;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.Tools
 {
     public static class Loader
     {

@@ -1,7 +1,7 @@
 ﻿using KBCore.Refs;
 using UnityEngine;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.Core
 {
     public class PressPlate : ActivationMechanism
     {
@@ -22,7 +22,7 @@ namespace _Project.Scripts
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.GetComponent<Player>())
+            if (other.gameObject.GetComponent<Player.Player>())
             {
                 SetVisualsPressed(true);
                 InvokeOnPlatePressed();
@@ -31,7 +31,7 @@ namespace _Project.Scripts
         
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.gameObject.GetComponent<Player>())
+            if (other.gameObject.GetComponent<Player.Player>())
             {
                 SetVisualsPressed(false);
                 InvokeOnPlatePressed();

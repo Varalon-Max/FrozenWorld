@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using KBCore.Refs;
 using MEC;
 using TMPro;
 using UnityEngine;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.Tools
 {
     public class TextAnimator : MonoBehaviour
     {

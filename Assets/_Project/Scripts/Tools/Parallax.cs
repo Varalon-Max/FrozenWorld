@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.Tools
 {
     public class Parallax: MonoBehaviour
     {

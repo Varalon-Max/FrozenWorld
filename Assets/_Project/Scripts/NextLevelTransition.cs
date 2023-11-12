@@ -1,4 +1,5 @@
 ﻿using System;
+using _Project.Scripts.Tools;
 using Eflatun.SceneReference;
 using KBCore.Refs;
 using UnityEngine;
@@ -17,7 +18,7 @@ namespace _Project.Scripts
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.GetComponent<Player>())
+            if (other.gameObject.GetComponent<Player.Player>())
             {
                 Loader.Load(nextScene);
             }

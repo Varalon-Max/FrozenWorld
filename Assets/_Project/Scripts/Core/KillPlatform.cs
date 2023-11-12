@@ -1,8 +1,7 @@
-﻿using System;
-using KBCore.Refs;
+﻿using KBCore.Refs;
 using UnityEngine;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.Core
 {
     public class KillPlatform : MonoBehaviour
     {
@@ -15,9 +14,9 @@ namespace _Project.Scripts
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.GetComponent<Player>())
+            if (other.gameObject.GetComponent<Player.Player>())
             {
-                GameManager.Instance.RestartLevel();
+                GameManager.Instance.HandlePlayerDead();
             }
         }
     }

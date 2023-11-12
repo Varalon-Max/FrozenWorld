@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Project.Scripts.Behaviours;
 using KBCore.Refs;
 using UnityEngine;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.Core
 {
     public class Torch : ActivationMechanism
     {
@@ -14,6 +15,7 @@ namespace _Project.Scripts
         private IBehaviour _meltingBehaviour;
         
         public event Action OnTorchLit;
+        public static event Action OnAnyTorchLit;
 
         private void OnValidate()
         {
@@ -37,6 +39,7 @@ namespace _Project.Scripts
         private void LightTorch()
         {
             OnTorchLit?.Invoke();
+            OnAnyTorchLit?.Invoke();
         }
 
         private void OnDisable()

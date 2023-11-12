@@ -1,9 +1,9 @@
-﻿using System;
+﻿using _Project.Scripts.Tools;
 using Eflatun.SceneReference;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.UI
 {
     public class AboutUsUI : MonoBehaviour
     {

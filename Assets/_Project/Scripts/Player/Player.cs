@@ -1,12 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using _Project.Scripts;
 using _Project.Scripts.Enums;
 using KBCore.Refs;
 using UnityEngine;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.Player
 {
     public class Player: MonoBehaviour
     {

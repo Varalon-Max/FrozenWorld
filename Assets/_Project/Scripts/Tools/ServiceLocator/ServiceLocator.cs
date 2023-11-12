@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.Tools.ServiceLocator
 {
     public static class ServiceLocator
     {
