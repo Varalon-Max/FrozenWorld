@@ -209,9 +209,9 @@ MonoBehaviour:
   - Purpose: 1
     AudioClip: {fileID: 8300000, guid: bf1a845cc309a8445b026896b5e3e7d1, type: 3}
   - Purpose: 2
-    AudioClip: {fileID: 8300000, guid: 78233da75fd953444adb14a6efbab515, type: 3}
+    AudioClip: {fileID: 8300000, guid: 4fca65db3cb9bc545b7f5f7af41a9d41, type: 3}
   - Purpose: 3
-    AudioClip: {fileID: 8300000, guid: e7a858917151f3b4a9b917e649689aee, type: 3}
+    AudioClip: {fileID: 8300000, guid: 7c1f7dbdac66b8e43afddfc673cdda50, type: 3}
   - Purpose: 4
     AudioClip: {fileID: 8300000, guid: 199b37810e2f91342bae3027c259ce09, type: 3}
   - Purpose: 5
@@ -219,7 +219,7 @@ MonoBehaviour:
   - Purpose: 6
     AudioClip: {fileID: 8300000, guid: e71ebd1085683724783bfd93f0d1107b, type: 3}
   - Purpose: 7
-    AudioClip: {fileID: 8300000, guid: bf1a845cc309a8445b026896b5e3e7d1, type: 3}
+    AudioClip: {fileID: 8300000, guid: 5413dc6955a44774691e90cfd911bc54, type: 3}
   audioSource: {fileID: 232756791}
 --- !u!82 &232756791
 AudioSource:
