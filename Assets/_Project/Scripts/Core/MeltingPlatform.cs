@@ -27,7 +27,7 @@ namespace _Project.Scripts.Core
         private void OnEnable()
         {
             meltingObject.OnTotallyMelted += OnTotallyMelted;
-            IMeltingBehaviour.OnAnyStateChanged += OnAnyPlatformStateChanged;
+            _meltingMeltingBehaviour.OnAnyStateChanged += OnAnyPlatformStateChanged;
             _meltingMeltingBehaviour.OnEnable();
         }
 
@@ -47,7 +47,7 @@ namespace _Project.Scripts.Core
         private void OnDisable()
         {
             meltingObject.OnTotallyMelted -= OnTotallyMelted;
-            IMeltingBehaviour.OnAnyStateChanged -= OnAnyPlatformStateChanged;
+            _meltingMeltingBehaviour.OnAnyStateChanged -= OnAnyPlatformStateChanged;
             _meltingMeltingBehaviour.OnDisable();
         }
     }
