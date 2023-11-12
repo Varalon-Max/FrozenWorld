@@ -16,15 +16,20 @@ namespace _Project.Scripts
 
         private void Awake()
         {
-            if (Instance == null)
+            if (Instance == this)
             {
-                Instance = this;
-                
-                DontDestroyOnLoad(gameObject);
+                return;
+            }
+            
+            if (Instance != null)
+            {
+                Destroy(gameObject);
             }
             else
             {
-                Destroy(gameObject);
+                Instance = this;
+
+                DontDestroyOnLoad(gameObject);
             }
         }
 

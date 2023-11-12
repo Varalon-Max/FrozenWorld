@@ -1,11 +1,10 @@
-﻿using System;
-using KBCore.Refs;
+﻿using KBCore.Refs;
 using TMPro;
 using UnityEngine;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.UI
 {
-    public class LevelUI : MonoBehaviour
+    public class LevelUI : UI
     {
         [SerializeField] private TMP_Text torchesText;
         [SerializeField,Scene] private Level level;

@@ -15,7 +15,10 @@ namespace _Project.Scripts.Core
         private GameObject _defaultVisualsPrefab;
         private GameObject _currentVisuals;
 
-        private IBehaviour _meltingBehaviour;
+        private IMeltingBehaviour _meltingMeltingBehaviour;
+        
+        public static event Action OnAnyPlatformTotallyMelted;
+        public static event Action OnAnyPlatformStateChanged;
         private void OnValidate()
         {
             this.ValidateRefs();
@@ -24,25 +27,28 @@ namespace _Project.Scripts.Core
         private void OnEnable()
         {
             meltingObject.OnTotallyMelted += OnTotallyMelted;
-            _meltingBehaviour.OnEnable();
+            IMeltingBehaviour.OnAnyStateChanged += OnAnyPlatformStateChanged;
+            _meltingMeltingBehaviour.OnEnable();
         }
 
         private void Awake()
         {
             visualsPlaceholder.SetActive(false);
-            _meltingBehaviour = new ChangingVisualOnMeltingBehaviour(freezingStages, meltingObject, transform);
-            _meltingBehaviour.Awake();
+            _meltingMeltingBehaviour = new ChangingVisualOnMeltingMeltingBehaviour(freezingStages, meltingObject, transform);
+            _meltingMeltingBehaviour.Awake();
         }
 
         private void OnTotallyMelted()
         {
+            OnAnyPlatformTotallyMelted?.Invoke();
             Destroy(gameObject);
         }
 
         private void OnDisable()
         {
             meltingObject.OnTotallyMelted -= OnTotallyMelted;
-            _meltingBehaviour.OnDisable();
+            IMeltingBehaviour.OnAnyStateChanged -= OnAnyPlatformStateChanged;
+            _meltingMeltingBehaviour.OnDisable();
         }
     }
 

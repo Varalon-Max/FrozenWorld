@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using _Project.Scripts.Core;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace _Project.Scripts.Behaviours
 {
-    public class ChangingVisualOnMeltingBehaviour : IBehaviour
+    public class ChangingVisualOnMeltingMeltingBehaviour : IMeltingBehaviour
     {
         private MeltingObject _meltingObject;
         private List<FreezingVisuals> _freezingStages;
@@ -13,8 +15,9 @@ namespace _Project.Scripts.Behaviours
 
         private GameObject _defaultVisualsPrefab;
         private GameObject _currentVisuals;
+        
 
-        public ChangingVisualOnMeltingBehaviour(
+        public ChangingVisualOnMeltingMeltingBehaviour(
             List<FreezingVisuals> freezingStages,
             MeltingObject meltingObject, 
             Transform transform)
@@ -33,6 +36,7 @@ namespace _Project.Scripts.Behaviours
         {
             if (_freezingStages.Count != 0)
             {
+                _previousState = _freezingStages.Count - 1;
                 _defaultVisualsPrefab = _freezingStages.First(v => v.maxFreezingBound == 1).frozenVisualsPrefab;
                 _freezingStages = _freezingStages.OrderBy(v => v.maxFreezingBound).ToList();
             }
@@ -42,15 +46,23 @@ namespace _Project.Scripts.Behaviours
 
         private void OnFreezingChanged(float currentFreezing)
         {
-            foreach (var freezingStage in _freezingStages)
+            for (var i = 0; i < _freezingStages.Count; i++)
             {
+                var freezingStage = _freezingStages[i];
                 if (currentFreezing <= freezingStage.maxFreezingBound)
                 {
+                    if (_previousState != i)
+                    {
+                        _previousState = i;
+                        IMeltingBehaviour.InvokeOnAnyStateChanged();
+                    }
                     ChangeVisuals(freezingStage.frozenVisualsPrefab);
                     return;
                 }
             }
         }
+        
+        private int _previousState;
 
         private void ChangeVisuals(GameObject newVisualsPrefab)
         {

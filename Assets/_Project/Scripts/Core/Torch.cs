@@ -12,7 +12,7 @@ namespace _Project.Scripts.Core
         [SerializeField] private List<FreezingVisuals> freezingStages;
         [SerializeField] private GameObject visualPlaceholder;
 
-        private IBehaviour _meltingBehaviour;
+        private IMeltingBehaviour _meltingMeltingBehaviour;
         
         public event Action OnTorchLit;
         public static event Action OnAnyTorchLit;
@@ -25,15 +25,15 @@ namespace _Project.Scripts.Core
         private void Awake()
         {
             visualPlaceholder.SetActive(false);
-            _meltingBehaviour =
-                new ChangingVisualOnMeltingBehaviour(freezingStages, meltingObject, transform);
-            _meltingBehaviour.Awake();
+            _meltingMeltingBehaviour =
+                new ChangingVisualOnMeltingMeltingBehaviour(freezingStages, meltingObject, transform);
+            _meltingMeltingBehaviour.Awake();
         }
 
         private void OnEnable()
         {
             meltingObject.OnTotallyMelted += LightTorch;
-            _meltingBehaviour.OnEnable();
+            _meltingMeltingBehaviour.OnEnable();
         }
 
         private void LightTorch()
@@ -45,7 +45,7 @@ namespace _Project.Scripts.Core
         private void OnDisable()
         {
             meltingObject.OnTotallyMelted -= LightTorch;
-            _meltingBehaviour.OnDisable();
+            _meltingMeltingBehaviour.OnDisable();
         }
     }
 }

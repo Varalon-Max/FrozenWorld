@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace _Project.Scripts.UI
 {
-    public class RestartButtonUI : MonoBehaviour
+    public class RestartButtonUI : UI
     {
         [SerializeField, Self] private Button button;
     
@@ -12,10 +12,10 @@ namespace _Project.Scripts.UI
         {
             this.ValidateRefs();
         }
-
         private void OnEnable()
         {
             button.onClick.AddListener(Restart);
+            button.onClick.AddListener(InvokeOnAnyButtonClicked);
         }
 
         private void Restart()
@@ -23,9 +23,9 @@ namespace _Project.Scripts.UI
             GameManager.Instance.RestartLevel();
         }
     
-        private void OnDisable()
+        private void OnDestroy()
         {
-            button.onClick.RemoveListener(Restart);
+            button.onClick.RemoveAllListeners();
         }
     }
 }

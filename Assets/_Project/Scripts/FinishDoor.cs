@@ -1,5 +1,3 @@
-using System;
-using KBCore.Refs;
 using UnityEngine;
 
 namespace _Project.Scripts

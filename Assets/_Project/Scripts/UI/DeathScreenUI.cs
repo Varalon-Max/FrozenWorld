@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Project.Scripts
+namespace _Project.Scripts.UI
 {
-    public class DeathScreenUI : MonoBehaviour
+    public class DeathScreenUI : UI
     {
         [SerializeField] private Transform container;
         [SerializeField] private Button tryAgainButton;
@@ -11,12 +12,13 @@ namespace _Project.Scripts
         private void Start()
         {
             tryAgainButton.onClick.AddListener(GameManager.Instance.RestartLevel);
+            tryAgainButton.onClick.AddListener(InvokeOnAnyButtonClicked);
             container.gameObject.SetActive(false);
         }
 
         private void OnEnable()
         {
-            // GameManager.Instance.OnPlayerDead += PlayerDead;
+            GameManager.Instance.OnPlayerDead += PlayerDead;
         }
 
         private void PlayerDead()
@@ -26,7 +28,12 @@ namespace _Project.Scripts
 
         private void OnDisable()
         {
-            // GameManager.Instance.OnPlayerDead -= PlayerDead;
+            GameManager.Instance.OnPlayerDead -= PlayerDead;
+        }
+
+        private void OnDestroy()
+        {
+            tryAgainButton.onClick.RemoveAllListeners();
         }
     }
 }

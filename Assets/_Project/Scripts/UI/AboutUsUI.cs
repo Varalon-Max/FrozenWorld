@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace _Project.Scripts.UI
 {
-    public class AboutUsUI : MonoBehaviour
+    public class AboutUsUI : UI
     {
         [SerializeField] private Transform tabs;
         [SerializeField] private Button nextButton;
@@ -22,6 +22,10 @@ namespace _Project.Scripts.UI
             nextButton.onClick.AddListener(NextTab);
             previousButton.onClick.AddListener(PreviousTab);
             backButton.onClick.AddListener(()=>Loader.Load(mainMenuScene));
+            
+            nextButton.onClick.AddListener(InvokeOnAnyButtonClicked);
+            previousButton.onClick.AddListener(InvokeOnAnyButtonClicked);
+            backButton.onClick.AddListener(InvokeOnAnyButtonClicked);
         }
 
         private void Start()
@@ -64,6 +68,13 @@ namespace _Project.Scripts.UI
             {
                 _allTabs[i++] = tab;
             }
+        }
+        
+        private void OnDestroy()
+        {
+            nextButton.onClick.RemoveAllListeners();
+            previousButton.onClick.RemoveAllListeners();
+            backButton.onClick.RemoveAllListeners();
         }
     }
 }
