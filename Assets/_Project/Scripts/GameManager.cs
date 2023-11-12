@@ -1,5 +1,6 @@
 ﻿using System;
 using _Project.Scripts.Tools;
+using Eflatun.SceneReference;
 using UnityEngine;
 
 namespace _Project.Scripts
@@ -7,6 +8,8 @@ namespace _Project.Scripts
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private Material iceMaterial;
+        [SerializeField] private SceneReference mainScene;
+        
         private static readonly int Sides = Shader.PropertyToID("_Sides");
         private static readonly int Emission = Shader.PropertyToID("_Emission");
         public Material IceMaterial => iceMaterial;
@@ -35,13 +38,17 @@ namespace _Project.Scripts
 
         public void RestartLevel()
         {
-            Debug.Log("Restarting level...");
             Loader.RestartScene();
         }
 
         public void HandlePlayerDead()
         {
             OnPlayerDead?.Invoke();
+        }
+
+        public void GoToMainMenu()
+        {
+            Loader.Load(mainScene);
         }
     }
 }

@@ -8,11 +8,15 @@ namespace _Project.Scripts.UI
     {
         [SerializeField] private Transform container;
         [SerializeField] private Button tryAgainButton;
+        [SerializeField] private Button mainMenuButton;
+        
 
         private void Start()
         {
             tryAgainButton.onClick.AddListener(GameManager.Instance.RestartLevel);
             tryAgainButton.onClick.AddListener(InvokeOnAnyButtonClicked);
+            mainMenuButton.onClick.AddListener(GameManager.Instance.GoToMainMenu);
+            mainMenuButton.onClick.AddListener(InvokeOnAnyButtonClicked);
             container.gameObject.SetActive(false);
         }
 
@@ -34,6 +38,7 @@ namespace _Project.Scripts.UI
         private void OnDestroy()
         {
             tryAgainButton.onClick.RemoveAllListeners();
+            mainMenuButton.onClick.RemoveAllListeners();
         }
     }
 }
