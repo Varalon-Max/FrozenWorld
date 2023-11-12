@@ -8,7 +8,9 @@ namespace _Project.Scripts.UI
     {
         [SerializeField] private TMP_Text torchesText;
         [SerializeField,Scene] private Level level;
-
+        [SerializeField, Child] private ThermometerUI thermometerUI;
+        [SerializeField] private Player.Player player;
+        
         private void OnValidate()
         {
             this.ValidateRefs();
@@ -22,6 +24,8 @@ namespace _Project.Scripts.UI
         private void Start()
         {
             UpdateText();
+            player.OnAccelerationCooldownChanged += thermometerUI.SetFillAmount;
+            player.OnAccelerationStart += thermometerUI.SetFillAmountToZero;
         }
 
         private void OnTorchActivated()
@@ -37,6 +41,12 @@ namespace _Project.Scripts.UI
         private void OnDisable()
         {
             level.OnTorchActivated -= OnTorchActivated;
+        }
+        
+        private void OnDestroy()
+        {
+            player.OnAccelerationCooldownChanged -= thermometerUI.SetFillAmount;
+            player.OnAccelerationStart -= thermometerUI.SetFillAmountToZero;
         }
     }
 }

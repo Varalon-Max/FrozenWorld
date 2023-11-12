@@ -9,6 +9,7 @@ namespace _Project.Scripts.Player
     {
         public event Action OnAccelerationEnd;
         public event Action OnAccelerationStart;
+        public event Action<float> OnAccelerationCooldownChanged;
         
         [SerializeField, Self] private GameInput gameInput;
         
@@ -42,6 +43,7 @@ namespace _Project.Scripts.Player
             if (_playerState.GetState()==State.AccelerateOnCooldown)
             {
                 _accelerateCooldownCounter -= Time.deltaTime;
+                OnAccelerationCooldownChanged?.Invoke(1-_accelerateCooldownCounter/acceleratedCooldown);
                 EndCooldown();
             }
         }
