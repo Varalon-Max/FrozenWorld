@@ -1,11 +1,15 @@
-﻿using KBCore.Refs;
+﻿using System;
+using KBCore.Refs;
 using UnityEngine;
 
 namespace _Project.Scripts.Player
 {
-    public class MoveController : MonoBehaviour
+    public class MoveController : MonoBehaviour, IPlayerController
     {
-        [SerializeField, Self] private GameInput gameInput;
+        public Vector2 Input { get; private set; }
+        public Vector2 Speed { get; private set; }
+        public event Action<bool> GroundedChanged;
+        public event Action Jumped;
         
         [SerializeField] private float forceApplied;
         [SerializeField] private LayerMask groundLayer;
@@ -13,57 +17,50 @@ namespace _Project.Scripts.Player
         [SerializeField] private float acceleratedSpeed;
         [SerializeField] private float fallMultiplyer;
         [SerializeField] private float defaultGravityScale;
-        [SerializeField, Self] private Rigidbody2D _playerRigidbody;
-        
-        
+        [SerializeField, Self] private Rigidbody2D playerRigidbody;
+        [SerializeField, Self] private Player player;
+        [SerializeField, Self] private BoxCollider2D boxCollider2D;
+        [SerializeField, Self] private GameInput gameInput;
 
         private float _coyoteTime = 0.2f;
         private float _coyoteTimeCounter;
         private float _currentSpeed;
         private Vector2 _currentMoveDirection;
-        private Player _player;
         
-        private BoxCollider2D _boxCollider2D;
-        // private Rigidbody2D _playerRigidbody;
-
         private void OnValidate()
         {
             this.ValidateRefs();
-            defaultGravityScale = _playerRigidbody.gravityScale;
-        }
-        private void Awake()
-        {
-            _playerRigidbody = GetComponent<Rigidbody2D>();
-            _boxCollider2D = GetComponent<BoxCollider2D>();
-            _player = GetComponent<Player>();
+            defaultGravityScale = playerRigidbody.gravityScale;
         }
 
         private void OnEnable()
         {
             gameInput.OnJump += Jump;
-            _player.OnAccelerationStart += Accelerate;
-            _player.OnAccelerationEnd += UnAccelerate;
+            player.OnAccelerationStart += Accelerate;
+            player.OnAccelerationEnd += UnAccelerate;
         }
         
         private void OnDisable()
         {
             gameInput.OnJump -= Jump;
-            _player.OnAccelerationStart -= Accelerate;
-            _player.OnAccelerationEnd -= UnAccelerate;
-
+            player.OnAccelerationStart -= Accelerate;
+            player.OnAccelerationEnd -= UnAccelerate;
         }
 
         public void Jump()
         {
+            Jumped?.Invoke();
             if (IsGrounded() || _coyoteTimeCounter>0)
             {
-                _playerRigidbody.AddForce(Vector2.up*forceApplied, ForceMode2D.Impulse);
+                playerRigidbody.AddForce(Vector2.up*forceApplied, ForceMode2D.Impulse);
                 _coyoteTimeCounter = 0;
             }
         }
 
         private void Update()
         {
+            Input = gameInput.MoveDirection;
+            Speed = playerRigidbody.velocity;
             if (IsGrounded())
             {
                 _coyoteTimeCounter = _coyoteTime;
@@ -77,9 +74,9 @@ namespace _Project.Scripts.Player
         
         private void FixedUpdate()
         {
-            if (_playerRigidbody.velocity.y < 0)
+            if (playerRigidbody.velocity.y < 0)
             {
-                _playerRigidbody.velocity += Vector2.up * Physics.gravity.y * fallMultiplyer * Time.deltaTime;
+                playerRigidbody.velocity += Vector2.up * (Physics.gravity.y * fallMultiplyer * Time.deltaTime);
             }
         }
 
@@ -95,8 +92,8 @@ namespace _Project.Scripts.Player
 
             bool CheckHitsWall()
             {
-                RaycastHit2D ray = Physics2D.BoxCast(_boxCollider2D.bounds.center, 
-                    _boxCollider2D.bounds.size-new Vector3(0,0.1f,0),
+                RaycastHit2D ray = Physics2D.BoxCast(boxCollider2D.bounds.center, 
+                    boxCollider2D.bounds.size-new Vector3(0,0.1f,0),
                     0f, 
                     moveDirection,extraWight, groundLayer);
                 
@@ -106,18 +103,18 @@ namespace _Project.Scripts.Player
 
         private void Accelerate()
         {
-            if (_player.IsReadyToAccelerate())
+            if (player.IsReadyToAccelerate())
             {
-                _playerRigidbody.gravityScale = 0f;
-                _playerRigidbody.velocity = new Vector2(_playerRigidbody.velocity.x, 0f);
-                _playerRigidbody.AddForce(_currentMoveDirection*acceleratedSpeed, ForceMode2D.Impulse);   
+                playerRigidbody.gravityScale = 0f;
+                playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, 0f);
+                playerRigidbody.AddForce(_currentMoveDirection*acceleratedSpeed, ForceMode2D.Impulse);   
             }
         }
 
         private void UnAccelerate()
         {
-            _playerRigidbody.gravityScale = defaultGravityScale;
-            _playerRigidbody.velocity = Vector2.zero;
+            playerRigidbody.gravityScale = defaultGravityScale;
+            playerRigidbody.velocity = Vector2.zero;
         }
         
 
@@ -125,12 +122,12 @@ namespace _Project.Scripts.Player
         {
             float extraHeight = 0.1f;
             
-            Bounds bounds = _boxCollider2D.bounds;
+            Bounds bounds = boxCollider2D.bounds;
             RaycastHit2D ray = Physics2D.BoxCast(bounds.center, 
                 bounds.size,
                 0f, 
                 Vector2.down,extraHeight, groundLayer);
-           
+            GroundedChanged?.Invoke(ray.collider != null);
             return ray.collider != null;
         }
     }

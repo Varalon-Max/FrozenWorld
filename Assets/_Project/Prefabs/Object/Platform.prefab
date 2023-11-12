@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformCollider: {fileID: 7587546492238893133}
-  meltingSpeed: 0.03
+  meltingSpeed: 0.1
   freezingSpeed: 0.03
 --- !u!114 &9220771326475536129
 MonoBehaviour:
