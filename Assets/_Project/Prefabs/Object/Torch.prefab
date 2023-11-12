@@ -67,8 +67,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformCollider: {fileID: 6494781753088424595}
-  meltingSpeed: 0.5
-  freezingSpeed: 0.1
+  meltingSpeed: 0.8
+  freezingSpeed: 1.2
 --- !u!58 &6494781753088424595
 CircleCollider2D:
   m_ObjectHideFlags: 0
