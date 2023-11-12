@@ -65,6 +65,6 @@ Material:
     - _Emission: 2
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Sides: 200
+    - _Sides: 50
     m_Colors: []
   m_BuildTextureStacks: []

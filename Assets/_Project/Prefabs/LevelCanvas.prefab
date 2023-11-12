@@ -31,9 +31,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2808338888635043941}
   - {fileID: 2992599660964295605}
   - {fileID: 7333894851011210996}
-  - {fileID: 6106300777662313809}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -76,10 +76,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -206,7 +206,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5888179725540792885, guid: f1b94e2c7afca7543993da9474c4376f, type: 3}
   m_PrefabInstance: {fileID: 3778589089571468481}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &4037624737713972982
+--- !u!1001 &5353741115512341442
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -303,10 +303,10 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7571e65759a786d4281bf5187d7372ca, type: 3}
---- !u!224 &6106300777662313809 stripped
+--- !u!224 &2808338888635043941 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7833297397190333351, guid: 7571e65759a786d4281bf5187d7372ca, type: 3}
-  m_PrefabInstance: {fileID: 4037624737713972982}
+  m_PrefabInstance: {fileID: 5353741115512341442}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8989755035789283624
 PrefabInstance:

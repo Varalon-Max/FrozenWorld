@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformCollider: {fileID: 7587546492238893133}
-  meltingSpeed: 0.1
-  freezingSpeed: 0.03
+  meltingSpeed: 0.75
+  freezingSpeed: 1.25
 --- !u!114 &9220771326475536129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +175,10 @@ PrefabInstance:
     - target: {fileID: 6105461701192740727, guid: c75d097b1a751814586ea54fb51184ca, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654475606931288928, guid: c75d097b1a751814586ea54fb51184ca, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

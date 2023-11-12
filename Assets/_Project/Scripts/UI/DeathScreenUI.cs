@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace _Project.Scripts.UI
@@ -13,11 +12,16 @@ namespace _Project.Scripts.UI
 
         private void Start()
         {
-            tryAgainButton.onClick.AddListener(GameManager.Instance.RestartLevel);
+            tryAgainButton.onClick.AddListener(Call);
             tryAgainButton.onClick.AddListener(InvokeOnAnyButtonClicked);
             mainMenuButton.onClick.AddListener(GameManager.Instance.GoToMainMenu);
             mainMenuButton.onClick.AddListener(InvokeOnAnyButtonClicked);
             container.gameObject.SetActive(false);
+        }
+
+        private void Call()
+        {
+            GameManager.Instance.RestartLevel();
         }
 
         private void OnEnable()

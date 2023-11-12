@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/Other/Bootstrapper.unity
     guid: 0efc8dfab45813b4780ece2717b81540
   - enabled: 1
+    path: Assets/_Project/Scenes/Levels/Tutorial.unity
+    guid: 8717f244cccb34846b1e547b8655939d
+  - enabled: 1
     path: Assets/_Project/Scenes/Other/MainMenu.unity
     guid: 2080becb7a179a642bfe038c9eaf8703
   - enabled: 1
