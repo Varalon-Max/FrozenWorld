@@ -7,25 +7,31 @@ namespace _Project.Scripts.UI
     public class LevelUI : UI
     {
         [SerializeField] private TMP_Text torchesText;
-        [SerializeField,Scene] private Level level;
         [SerializeField, Child] private ThermometerUI thermometerUI;
-        [SerializeField] private Player.Player player;
+        private Level _level;
+        private Player.Player _player;
         
         private void OnValidate()
         {
             this.ValidateRefs();
         }
 
+        private void Awake()
+        {
+            _player = FindObjectOfType<Player.Player>();
+            _level = FindObjectOfType<Level>();
+        }
+
         private void OnEnable()
         {
-            level.OnTorchActivated += OnTorchActivated;
+            _level.OnTorchActivated += OnTorchActivated;
         }
 
         private void Start()
         {
             UpdateText();
-            player.OnAccelerationCooldownChanged += thermometerUI.SetFillAmount;
-            player.OnAccelerationStart += thermometerUI.SetFillAmountToZero;
+            _player.OnAccelerationCooldownChanged += thermometerUI.SetFillAmount;
+            _player.OnAccelerationStart += thermometerUI.SetFillAmountToZero;
         }
 
         private void OnTorchActivated()
@@ -35,18 +41,18 @@ namespace _Project.Scripts.UI
 
         private void UpdateText()
         {
-            torchesText.text = $"{level.TorchesActivated} / {level.TotalTorches}";
+            torchesText.text = $"{_level.TorchesActivated} / {_level.TotalTorches}";
         }
 
         private void OnDisable()
         {
-            level.OnTorchActivated -= OnTorchActivated;
+            _level.OnTorchActivated -= OnTorchActivated;
         }
         
         private void OnDestroy()
         {
-            player.OnAccelerationCooldownChanged -= thermometerUI.SetFillAmount;
-            player.OnAccelerationStart -= thermometerUI.SetFillAmountToZero;
+            _player.OnAccelerationCooldownChanged -= thermometerUI.SetFillAmount;
+            _player.OnAccelerationStart -= thermometerUI.SetFillAmountToZero;
         }
     }
 }

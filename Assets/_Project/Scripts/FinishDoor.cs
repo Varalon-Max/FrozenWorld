@@ -1,14 +1,20 @@
+using System;
 using UnityEngine;
 
 namespace _Project.Scripts
 {
     public class FinishDoor : MonoBehaviour
     {
-        [SerializeField] private Level level;
+        private Level _level;
+
+        private void Awake()
+        {
+            _level = FindObjectOfType<Level>();
+        }
 
         private void OnEnable()
         {
-            level.OnAllTorchesActivated += OnAllTorchesActivated;
+            _level.OnAllTorchesActivated += OnAllTorchesActivated;
         }
 
         private void OnAllTorchesActivated()
@@ -18,7 +24,7 @@ namespace _Project.Scripts
 
         private void OnDisable()
         {
-            level.OnAllTorchesActivated -= OnAllTorchesActivated;
+            _level.OnAllTorchesActivated -= OnAllTorchesActivated;
         }
     }
 }
