@@ -32,6 +32,8 @@ namespace _Project.Scripts.Behaviours
             _meltingObject.OnFreezingChanged += OnFreezingChanged;
         }
 
+        public event Action OnAnyStateChanged;
+
         public void Awake()
         {
             if (_freezingStages.Count != 0)
@@ -54,7 +56,7 @@ namespace _Project.Scripts.Behaviours
                     if (_previousState != i)
                     {
                         _previousState = i;
-                        IMeltingBehaviour.InvokeOnAnyStateChanged();
+                        OnAnyStateChanged?.Invoke();
                     }
                     ChangeVisuals(freezingStage.frozenVisualsPrefab);
                     return;

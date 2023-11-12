@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7267626662894921531}
   - component: {fileID: 1592902371232906568}
   - component: {fileID: 7280122794860521785}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AutomaticDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4009500950718732147}
   - component: {fileID: 5256801279059262045}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
