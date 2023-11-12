@@ -12,8 +12,9 @@ namespace _Project.Scripts
         public static SoundManager Instance { get; private set; }
         [SerializeField] private Sound[] musicSound;
         [SerializeField] private Sound[] sfxSound;
-        [SerializeField] private AudioSource audioSource;
-        
+        [SerializeField] private AudioSource audioSourceSFX;
+        [SerializeField] private AudioSource audioSourceMusic;
+
 
         private float _volume = 1f;
 
@@ -24,6 +25,12 @@ namespace _Project.Scripts
             GrabSingleton();
 
             _sfxDictionary = sfxSound.ToDictionary(x => x.Purpose, x => x.AudioClip);
+        }
+
+        private void Start()
+        {
+            audioSourceMusic.loop = true;
+            audioSourceMusic.Play();
         }
 
         private void OnEnable()
@@ -63,10 +70,16 @@ namespace _Project.Scripts
             }
         }
 
+        public void PlayBackgroundNoise()
+        {
+            audioSourceMusic.loop = true;
+            audioSourceMusic.Play();
+        }
+
         public void Play2DSound(SoundPurpose purpose)
         {
             AudioClip clip = _sfxDictionary[purpose];
-            audioSource.PlayOneShot(clip,  _volume);
+            audioSourceSFX.PlayOneShot(clip,  _volume);
         }
         
         private void OnAnyButtonClicked()
