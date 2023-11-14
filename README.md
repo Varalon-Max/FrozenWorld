@@ -40,7 +40,7 @@ Another option could be cloning project and running it in Unity itself. If chose
 
 The Singleton pattern ensures that a class has only one instance and provides a global point of access to it.
 
-In this project it was used to ensure that game have only one [GameManager]() and [SoundManager]() and they are persistent.
+In this project it was used to ensure that game have only one [GameManager](https://github.com/Varalon-Max/FrozenWorld/blob/main/Assets/_Project/Scripts/GameManager.cs) and [SoundManager](https://github.com/Varalon-Max/FrozenWorld/blob/main/Assets/_Project/Scripts/Sound/SoundManager.cs) and they are persistent.
 
 ```csharp
 private void Awake()
@@ -71,7 +71,43 @@ In this project it was used to initialize GameManager and SoundManager before ga
 
 A State Machine pattern is employed to manage the state of an entity or a system.
 
-In this project it was used to control states of player. It has 2 main parts: [IPlayerState]() and [Player.StateMachine]()
+In this project it was used to control states of player. It has 2 main parts: [IPlayerState](https://github.com/Varalon-Max/FrozenWorld/blob/main/Assets/_Project/Scripts/Player/IPlayerState.cs) and [Player.StateMachine](https://github.com/Varalon-Max/FrozenWorld/blob/main/Assets/_Project/Scripts/Player/Player.StateMachine.cs)
+
+__IPlayerState__
+
+```csharp
+public interface IPlayerState
+{
+    event Action OnStart;
+    event Action OnUpdate;
+    event Action OnExit;
+    
+    void Enter();
+    void Update(float deltaTime);
+    void Exit();
+}
+```
+
+__Player.StateMachine__
+
+```csharp
+private IPlayerState _currentState;
+private readonly Dictionary<Type, IPlayerState> _states = new();
+
+public void SetState<T>() where T : IPlayerState
+{
+    _currentState?.Exit();
+    _currentState = _states[typeof(T)];
+    _currentState.Enter();
+}
+
+public IPlayerState GetState()
+{
+    return _currentState;
+}
+```
+
+
 
 ## Observer
 
@@ -105,7 +141,7 @@ private void OnDisable()
 
 The Service Locator pattern is a design pattern used in game development to centralize the access to various services or resources.
 
-It's realization is [ServiceLocator.cs]()
+It's realization is [ServiceLocator.cs](https://github.com/Varalon-Max/FrozenWorld/blob/main/Assets/_Project/Scripts/Tools/ServiceLocator/ServiceLocator.cs)
 
 ```csharp
 private static Dictionary<Type, IService> _services = new();
@@ -130,7 +166,7 @@ public static void UnregisterService<T>() where T : IService
 
 ## Scene Loading
 
-For loading game scenes was created [Loader](), which responsibility was to load "Loading" scene at first and then target scene when it is ready. This lowers chance of lagging while loading scene
+For loading game scenes was created [Loader](https://github.com/Varalon-Max/FrozenWorld/blob/main/Assets/_Project/Scripts/Tools/Loader.cs), which responsibility was to load "Loading" scene at first and then target scene when it is ready. This lowers chance of lagging while loading scene
 
 ```csharp
 public static void Load(SceneReference scene)
@@ -151,6 +187,17 @@ private static IEnumerator<float> LoadTargetSceneReference()
 
 # Game Visuals
 ## Custom Full-Screen Shader
+
+For this game was created custom Frost shader using Shader Graph.
+
 ## UI
+Created ScreenSpace and WorldSpace UI
+
+## Cinemachine
+Cinemachine was used for camera to follow Player
+
 ## Animator
+For Player animations was used Crossfade animation method. All code in here: [CrossfadeAnimator](https://github.com/Varalon-Max/FrozenWorld/blob/main/Assets/_Project/Scripts/Animation/CrossfadeAnimator.cs)
+
 ## Sprites
+Hand-drawn sprites
