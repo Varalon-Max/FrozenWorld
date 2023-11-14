@@ -194,9 +194,11 @@ private static IEnumerator<float> LoadTargetSceneReference()
 ## Custom Full-Screen Shader
 
 For this game was created custom Frost shader using Shader Graph.
+![image](https://github.com/Varalon-Max/FrozenWorld/assets/71404364/e8065f6b-1f8c-45fc-8338-15bdc441faab)
 
 ## UI
 Created ScreenSpace and WorldSpace UI
+![image](https://github.com/Varalon-Max/FrozenWorld/assets/71404364/95fcce16-7475-4fa1-8c11-8b0c494fdfee)
 
 ## Cinemachine
 Cinemachine was used for camera to follow Player
