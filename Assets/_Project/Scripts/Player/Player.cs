@@ -1,11 +1,10 @@
 using System;
-using _Project.Scripts.Enums;
 using KBCore.Refs;
 using UnityEngine;
 
 namespace _Project.Scripts.Player
 {
-    public class Player: MonoBehaviour
+    public partial class Player: MonoBehaviour
     {
         public event Action OnAccelerationEnd;
         public event Action OnAccelerationStart;
@@ -15,17 +14,15 @@ namespace _Project.Scripts.Player
         
         [SerializeField] private float accelerateTime;
         [SerializeField] private float acceleratedCooldown;
-
-        private float _accelerateTimeCounter;
-        private float _accelerateCooldownCounter;
-        private PlayerState _playerState;
+        
+        private void Awake()
+        {
+            InitializeStates();
+        }
 
         private void Start()
         {
-            _playerState = new PlayerState();
-            _playerState.SetState(State.Calm);
-            _accelerateTimeCounter = accelerateTime;
-            _accelerateCooldownCounter = acceleratedCooldown;
+            SetDefaultState();
         }
         private void OnValidate()
         {
@@ -34,61 +31,32 @@ namespace _Project.Scripts.Player
 
         private void Update()
         {
-            if (_playerState.GetState()==State.Accelerated)
-            {
-                _accelerateTimeCounter -= Time.deltaTime;
-                EndAcceleration();
-            }
-
-            if (_playerState.GetState()==State.AccelerateOnCooldown)
-            {
-                _accelerateCooldownCounter -= Time.deltaTime;
-                OnAccelerationCooldownChanged?.Invoke(1-_accelerateCooldownCounter/acceleratedCooldown);
-                EndCooldown();
-            }
+            _currentState.Update(Time.deltaTime);
         }
 
         private void OnEnable()
         {
             gameInput.OnAccelerate += SetAccelerator;
+            SubscribeForEvents();
         }
         
         private void OnDisable()
         {
             gameInput.OnAccelerate -= SetAccelerator;
-        }
-
-        private void EndAcceleration()
-        {
-            if (_accelerateTimeCounter<=0)
-            {
-                _playerState.SetState(State.AccelerateOnCooldown);
-                OnAccelerationEnd?.Invoke();
-                _accelerateTimeCounter = accelerateTime;
-            }
-        }
-
-        private void EndCooldown()
-        {
-            if (_accelerateCooldownCounter<=0)
-            {
-                _playerState.SetState(State.Calm);
-                _accelerateCooldownCounter = acceleratedCooldown;
-            }
+            UnsubscribeFromEvents();
         }
 
         private void SetAccelerator()
         {
             if (IsReadyToAccelerate())
             {
-                OnAccelerationStart?.Invoke();
-                _playerState.SetState(State.Accelerated);
+                SetState<AcceleratedState>();
             }
         }
 
-        public bool IsReadyToAccelerate()
+        private bool IsReadyToAccelerate()
         {
-            return _playerState.GetState() == State.Calm;
+            return _currentState is CalmState;
         }
     }
 }

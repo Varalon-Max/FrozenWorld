@@ -11,7 +11,7 @@ namespace _Project.Scripts.Player
         public static bool OnGround { get; private set; }
         public event Action<bool> GroundedChanged;
         public event Action Jumped;
-        
+
         [SerializeField] private float forceApplied;
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private float movingSpeed;
@@ -30,7 +30,7 @@ namespace _Project.Scripts.Player
 
         public static event Action OnAnyJumpStarted;
         // public static event Action OnAnyJump;
-        
+
         private void OnValidate()
         {
             this.ValidateRefs();
@@ -43,7 +43,7 @@ namespace _Project.Scripts.Player
             player.OnAccelerationStart += Accelerate;
             player.OnAccelerationEnd += UnAccelerate;
         }
-        
+
         private void OnDisable()
         {
             gameInput.OnJump -= Jump;
@@ -53,11 +53,11 @@ namespace _Project.Scripts.Player
 
         public void Jump()
         {
-            if (IsGrounded() || _coyoteTimeCounter>0)
+            if (IsGrounded() || _coyoteTimeCounter > 0)
             {
                 Jumped?.Invoke();
                 OnAnyJumpStarted?.Invoke();
-                playerRigidbody.AddForce(Vector2.up*forceApplied, ForceMode2D.Impulse);
+                playerRigidbody.AddForce(Vector2.up * forceApplied, ForceMode2D.Impulse);
                 _coyoteTimeCounter = 0;
             }
         }
@@ -75,9 +75,10 @@ namespace _Project.Scripts.Player
             {
                 _coyoteTimeCounter -= Time.deltaTime;
             }
+
             Movement(gameInput.MoveDirection);
         }
-        
+
         private void FixedUpdate()
         {
             if (playerRigidbody.velocity.y < 0)
@@ -88,33 +89,30 @@ namespace _Project.Scripts.Player
 
         public void Movement(Vector2 moveDirection)
         {
-           _currentMoveDirection = moveDirection;
+            _currentMoveDirection = moveDirection;
             float extraWight = 0.1f;
-            
+
             if (!CheckHitsWall())
             {
-                transform.position += new Vector3(moveDirection.x*movingSpeed, 0, 0)*Time.deltaTime; 
+                transform.position += new Vector3(moveDirection.x * movingSpeed, 0, 0) * Time.deltaTime;
             }
 
             bool CheckHitsWall()
             {
-                RaycastHit2D ray = Physics2D.BoxCast(boxCollider2D.bounds.center, 
-                    boxCollider2D.bounds.size-new Vector3(0,0.1f,0),
-                    0f, 
-                    moveDirection,extraWight, groundLayer);
-                
+                RaycastHit2D ray = Physics2D.BoxCast(boxCollider2D.bounds.center,
+                    boxCollider2D.bounds.size - new Vector3(0, 0.1f, 0),
+                    0f,
+                    moveDirection, extraWight, groundLayer);
+
                 return ray.collider != null;
             }
         }
 
         private void Accelerate()
         {
-            if (player.IsReadyToAccelerate())
-            {
-                playerRigidbody.gravityScale = 0f;
-                playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, 0f);
-                playerRigidbody.AddForce(_currentMoveDirection*acceleratedSpeed, ForceMode2D.Impulse);   
-            }
+            playerRigidbody.gravityScale = 0f;
+            playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, 0f);
+            playerRigidbody.AddForce(_currentMoveDirection * acceleratedSpeed, ForceMode2D.Impulse);
         }
 
         private void UnAccelerate()
@@ -122,17 +120,17 @@ namespace _Project.Scripts.Player
             playerRigidbody.gravityScale = defaultGravityScale;
             playerRigidbody.velocity = Vector2.zero;
         }
-        
+
 
         private bool IsGrounded()
         {
             float extraHeight = 0.1f;
-            
+
             Bounds bounds = boxCollider2D.bounds;
-            RaycastHit2D ray = Physics2D.BoxCast(bounds.center, 
+            RaycastHit2D ray = Physics2D.BoxCast(bounds.center,
                 bounds.size,
-                0f, 
-                Vector2.down,extraHeight, groundLayer);
+                0f,
+                Vector2.down, extraHeight, groundLayer);
             GroundedChanged?.Invoke(ray.collider != null);
             return ray.collider != null;
         }

@@ -16,17 +16,17 @@ namespace _Project.Scripts.Tools
             SceneManager.LoadScene("Loading");
             Timing.RunCoroutine(LoadTargetSceneReference());
         }
-        
-        public static void RestartScene()
-        {
-            SceneReference selfScene = SceneReference.FromScenePath(SceneManager.GetActiveScene().path);
-            Load(selfScene);
-        }
 
         private static IEnumerator<float> LoadTargetSceneReference()
         {
             yield return Timing.WaitForOneFrame;
             SceneManager.LoadScene(_targetSceneReference.Name);
+        }
+
+        public static void RestartScene()
+        {
+            SceneReference selfScene = SceneReference.FromScenePath(SceneManager.GetActiveScene().path);
+            Load(selfScene);
         }
     }
 }

@@ -29,14 +29,14 @@ namespace _Project.Scripts.UI
             GameManager.Instance.OnPlayerDead += PlayerDead;
         }
 
-        private void PlayerDead()
-        {
-            container.gameObject.SetActive(true);
-        }
-
         private void OnDisable()
         {
             GameManager.Instance.OnPlayerDead -= PlayerDead;
+        }
+
+        private void PlayerDead()
+        {
+            container.gameObject.SetActive(true);
         }
 
         private void OnDestroy()
