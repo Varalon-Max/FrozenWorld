@@ -18,7 +18,7 @@
   - [Animator](#animator)
   - [Sprites](#sprites)
 
-# About Game {#frozen-world}
+# About Game
 ## Game Design & Game Idea
 
 Game was fully created for Mini Jam 145: Frozen in 2 days.
@@ -28,6 +28,11 @@ Game was fully created for Mini Jam 145: Frozen in 2 days.
 Jam limitation was Inconvenient Superpowers and theme Frozen. In this game was created heating area that helps to progress through puzzles and platforming but it also can ruin your run.
 
 Game has 6 playable levels with Main menu and About us.
+![1](https://github.com/Varalon-Max/FrozenWorld/assets/71404364/a8d6d836-e48f-4e2d-957a-828386562b7d)
+![2](https://github.com/Varalon-Max/FrozenWorld/assets/71404364/ce16cf39-00ce-4dcb-bf91-f10f127bc4ec)
+![5](https://github.com/Varalon-Max/FrozenWorld/assets/71404364/8a36a47c-d184-4e71-9e88-6720a5d4ceec)
+![4](https://github.com/Varalon-Max/FrozenWorld/assets/71404364/b97bb664-6895-41bd-9423-05e8136b6d43)
+![3](https://github.com/Varalon-Max/FrozenWorld/assets/71404364/1a0e2259-7699-41a2-80c3-b5bc3fd947b4)
 
 ## How to Run
 
